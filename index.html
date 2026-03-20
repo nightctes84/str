@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <title>Trivia SRT SANTA FE - Higiene y Seguridad</title>
+    
+    <style>
+        /* --- RESET Y ESTILOS DE PANTALLA COMPLETA --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            /* Deshabilitar selección de texto y menús contextuales (crucial para tótems) */
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent; /* Quita el recuadro gris al tocar en Android */
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden; /* Evita scroll */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            background-color: #000; /* Fondo base */
+        }
+
+        /* --- FONDO ANIMADO MODERNO --- */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Degradado animado con los colores de la marca */
+            background: linear-gradient(-45deg, #00adef, #00567a, #007bb0, #00d2ff);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- CONTENEDOR PRINCIPAL (Estilo Glassmorphism) --- */
+        .main-card {
+            background: rgba(255, 255, 255, 0.1); /* Transparencia */
+            border-radius: 40px; /* Bordes más redondeados y modernos */
+            padding: 50px 40px;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            
+            /* Efecto de desenfoque de fondo (Glassmorphism) */
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            
+            /* Borde sutil brillante */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            
+            /* Sombra suave */
+            box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.4);
+            
+            /* Animación de entrada */
+            animation: cardIn 1s ease-out;
+        }
+
+        @keyframes cardIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- ESTILOS DE LOGO CIRCULAR (CORREGIDO) --- */
+        .logo-container {
+            margin-bottom: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Contenedor circular perfecto */
+        .logo-wrapper {
+            width: 160px; /* Tamaño del círculo */
+            height: 160px;
+            border-radius: 50%; /* Forma circular */
+            overflow: hidden; /* Recorta el contenido cuadrado */
+            border: 2px solid rgba(255, 255, 255, 0.2); /* Borde sutil */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Sombra suave */
+            background-color: #00adef; /* Color de fondo idéntico al logo para rellenar */
+        }
+
+        .logo {
+            width: 100%; /* La imagen ocupa todo el contenedor circular */
+            height: 100%; /* La imagen ocupa todo el contenedor circular */
+            object-fit: cover; /* Ajusta la imagen sin deformarla para que cubra todo el círculo */
+            object-position: center; /* Centra la imagen */
+            pointer-events: none; /* Evita arrastrar la imagen */
+        }
+
+        /* --- ESTILOS DE CONTENIDO --- */
+        .title-group {
+            margin-bottom: 60px;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 3.5rem; /* Tamaño grande y legible */
+            font-weight: 800;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.6rem;
+            font-weight: 300;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+        }
+
+        /* --- BOTÓN TÁCTIL MODERNO REFLEXIVO --- */
+        .btn-start {
+            display: inline-block;
+            text-decoration: none;
+            background: #ffffff;
+            color: #00567a; /* Texto oscuro para contraste */
+            font-size: 2rem;
+            font-weight: 700;
+            padding: 25px 70px;
+            border-radius: 60px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            
+            /* Sombra del botón */
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+            
+            /* Transiciones suaves */
+            transition: all 0.2s ease;
+            
+            /* Animación de pulso constante para invitar a tocar */
+            animation: pulse 2s infinite;
+            
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Efecto de destello blanco al pasar por encima */
+        .btn-start::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(30deg);
+            transition: transform 0.5s ease;
+            pointer-events: none;
+        }
+
+        .btn-start:hover::after {
+            transform: rotate(30deg) translate(20%, -20%);
+        }
+
+        /* Efecto al presionar (Feedback táctil instantáneo) */
+        .btn-start:active {
+            transform: scale(0.96) translateY(5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.95);
+            animation: none; /* Detiene el pulso al tocar */
+        }
+
+        /* Animación de pulso */
+        @keyframes pulse {
+            0% { box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3); }
+            50% { box-shadow: 0 12px 50px rgba(255, 255, 255, 0.5); }
+            100% { box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3); }
+        }
+
+        /* --- AJUSTES PARA PANTALLAS PEQUEÑAS (MÓVILES) --- */
+        @media (max-width: 550px) {
+            .main-card { padding: 40px 25px; border-radius: 30px; }
+            h1 { font-size: 2.6rem; }
+            .subtitle { font-size: 1.3rem; letter-spacing: 1.5px; }
+            .btn-start { font-size: 1.6rem; padding: 20px 50px; border-radius: 50px; }
+            .logo-wrapper { width: 130px; height: 130px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-card">
+        
+        <div class="logo-container">
+            <div class="logo-wrapper">
+                <img src="logo.jpg" alt="Empresa Logo" class="logo">
+            </div>
+        </div>
+
+        <div class="title-group">
+            <h1>SRT SANTA FE</h1>
+            <p class="subtitle">Salud y Seguridad</p>
+        </div>
+
+        <a href="p1.html" class="btn-start" id="btnComenzar">
+            Comenzar
+        </a>
+
+    </div>
+
+    <script>
+        document.getElementById('btnComenzar').addEventListener('touchstart', function() {
+            // Este evento dispara antes que el 'click', haciendo que la app se sienta más rápida
+            // El navegador seguirá el enlace href automáticamente después.
+        });
+    </script>
+
+</body>
+</html>

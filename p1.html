@@ -44,6 +44,8 @@
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            position: relative;
+            z-index: 2;
         }
 
         h2 {
@@ -62,7 +64,6 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
-        /* Contenedor de opciones */
         .options-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -107,6 +108,18 @@
 
         .btn-confirmar:active {
             transform: translateY(4px);
+        }
+
+        /* Estilos del Logo inferior derecho */
+        .logo-footer {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 150px; /* Ajusta el tamaño según prefieras */
+            height: auto;
+            opacity: 0.9;
+            z-index: 10;
+            pointer-events: none; /* Para que no interfiera con clicks */
         }
 
         /* Estilos del Mensaje de Feedback (Modal) */
@@ -161,12 +174,14 @@
         <h1>¿Conocés algún familiar cercano que tenga o haya tenido alguna enfermedad cardiovascular?</h1>
 
         <div class="options-grid">
-        <div class="option-btn" onclick="selectOption(this)">SI</div>
-        <div class="option-btn" onclick="selectOption(this)">NO</div>
-    </div>
+            <div class="option-btn" onclick="selectOption(this, 'SI')">SI</div>
+            <div class="option-btn" onclick="selectOption(this, 'NO')">NO</div>
+        </div>
 
         <button class="btn-confirmar" onclick="showFeedback()">Confirmar</button>
     </div>
+
+    <img src="strlogo.png" alt="Logo SRT" class="logo-footer">
 
     <div id="overlay" class="overlay">
         <div class="modal">
@@ -179,9 +194,7 @@
         let selected = null;
 
         function selectOption(el, value) {
-            // Quitar clase seleccionada de otros
             document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
-            // Marcar el actual
             el.classList.add('selected');
             selected = value;
         }

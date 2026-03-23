@@ -12,6 +12,7 @@ body{
     font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
     background:linear-gradient(-45deg,#00adef,#00567a,#007bb0,#00d2ff);
     background-size:400% 400%;animation:gradientBG 15s ease infinite;
+    overflow: hidden;
 }
 @keyframes gradientBG{
     0%{background-position:0% 50%;}
@@ -21,24 +22,26 @@ body{
 
 .main-card{
     background:rgba(255,255,255,0.1);
-    border-radius:40px;padding:40px;width:90%;max-width:600px;
+    border-radius:40px;padding:30px;width:90%;max-width:600px;
     text-align:center;backdrop-filter:blur(20px);
     border:1px solid rgba(255,255,255,0.2);
     box-shadow:0 10px 40px rgba(0,0,0,0.4);
+    position: relative;
+    z-index: 2;
 }
-h2{color:#fff;font-size:1.5rem;margin-bottom:10px;text-transform:uppercase;opacity:.8;}
-h1{color:#fff;font-size:2rem;margin-bottom:40px;line-height:1.3;text-shadow:0 2px 4px rgba(0,0,0,0.2);}
+h2{color:#fff;font-size:1.2rem;margin-bottom:10px;text-transform:uppercase;opacity:.8;}
+h1{color:#fff;font-size:1.8rem;margin-bottom:30px;line-height:1.2;text-shadow:0 2px 4px rgba(0,0,0,0.2);}
 
-/* Botones SI / NO */
 .options-grid{
-    display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:40px;
+    display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-bottom:30px;
 }
 .option-btn{
     background:rgba(255,255,255,0.1);
     border:2px solid rgba(255,255,255,0.3);
-    border-radius:20px;padding:40px 20px;color:#fff;
-    font-size:2rem;font-weight:bold;text-transform:uppercase;
+    border-radius:20px;padding:20px 10px;color:#fff;
+    font-size:1.3rem;font-weight:bold;text-transform:uppercase;
     cursor:pointer;transition:.2s;
+    display: flex; align-items: center; justify-content: center;
 }
 .option-btn.selected{
     background:#fff;color:#00567a;border-color:#fff;transform:scale(1.05);
@@ -46,12 +49,24 @@ h1{color:#fff;font-size:2rem;margin-bottom:40px;line-height:1.3;text-shadow:0 2p
 
 .btn-confirmar{
     width:100%;background:#fff;color:#00567a;
-    padding:22px;border-radius:50px;
-    font-size:1.6rem;font-weight:bold;border:none;
+    padding:20px;border-radius:50px;
+    font-size:1.5rem;font-weight:bold;border:none;
     cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,0.2);
+    text-transform: uppercase;
 }
 
-/* MODAL */
+/* Estilos del Logo inferior derecho */
+.logo-footer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 150px;
+    height: auto;
+    opacity: 0.9;
+    z-index: 10;
+    pointer-events: none;
+}
+
 .overlay{
     display:none;position:fixed;top:0;left:0;width:100%;height:100%;
     background:rgba(0,0,0,0.75);backdrop-filter:blur(12px);
@@ -62,12 +77,12 @@ h1{color:#fff;font-size:2rem;margin-bottom:40px;line-height:1.3;text-shadow:0 2p
     width:85%;max-width:500px;text-align:center;
 }
 .modal p{
-    font-size:1.6rem;color:#333;margin-bottom:30px;line-height:1.4;
+    font-size:1.5rem;color:#333;margin-bottom:30px;line-height:1.4;
 }
 .btn-siguiente{
     display:inline-block;background:#00adef;color:#fff;
-    padding:20px 40px;border-radius:50px;
-    font-size:1.4rem;font-weight:bold;text-transform:uppercase;
+    padding:18px 35px;border-radius:50px;
+    font-size:1.3rem;font-weight:bold;text-transform:uppercase;
     text-decoration:none;
 }
 </style>
@@ -89,10 +104,12 @@ h1{color:#fff;font-size:2rem;margin-bottom:40px;line-height:1.3;text-shadow:0 2p
     <button class="btn-confirmar" onclick="showFeedback()">Confirmar</button>
 </div>
 
+<img src="strlogo.png" alt="Logo SRT" class="logo-footer">
+
 <div id="overlay" class="overlay">
     <div class="modal">
         <p>Una hidratación adecuada implica consumir entre 2 y 3 litros de agua diarios (6-8 vasos). Ayuda a regular la temperatura corporal, la función cognitiva y el bienestar general.</p>
-        <a href="index.html" class="btn-siguiente">Finalizar</a>
+        <a href="finsalud.html" class="btn-siguiente">Finalizar</a>
     </div>
 </div>
 
@@ -102,7 +119,7 @@ function selectOption(el){
     el.classList.add('selected');
 }
 function showFeedback(){
-    if(!document.querySelector('.option-btn.selected'))return;
+    if(!document.querySelector('.option-btn.selected')) return;
     document.getElementById('overlay').style.display='flex';
 }
 </script>

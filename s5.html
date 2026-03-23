@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Pregunta 2 - Trivia SRT</title>
+    <title>Pregunta 13 - Seguridad e Higiene SRT</title>
     <style>
         * {
             box-sizing: border-box;
@@ -21,7 +21,7 @@
             justify-content: center;
             align-items: center;
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background: linear-gradient(-45deg, #00adef, #00567a, #007bb0, #00d2ff);
+            background: linear-gradient(-45deg, #2c3e50, #4ca1af, #2c3e50, #34495e);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
             overflow: hidden;
@@ -50,7 +50,7 @@
 
         h2 {
             color: #ffffff;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 10px;
@@ -59,10 +59,10 @@
 
         h1 {
             color: #ffffff;
-            font-size: 2rem;
-            margin-bottom: 40px;
+            font-size: 1.8rem;
+            margin-bottom: 35px;
             text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-            line-height: 1.2;
+            line-height: 1.3;
         }
 
         .options-grid {
@@ -76,9 +76,9 @@
             background: rgba(255, 255, 255, 0.1);
             border: 2px solid rgba(255, 255, 255, 0.3);
             border-radius: 20px;
-            padding: 40px 20px;
+            padding: 25px;
             color: white;
-            font-size: 2.2rem;
+            font-size: 1.5rem;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.2s;
@@ -87,7 +87,7 @@
 
         .option-btn.selected {
             background: #ffffff;
-            color: #00567a;
+            color: #2c3e50;
             border-color: #ffffff;
             transform: scale(1.05);
         }
@@ -96,41 +96,31 @@
             display: block;
             width: 100%;
             background: #ffffff;
-            color: #00567a;
-            padding: 22px;
+            color: #2c3e50;
+            padding: 20px;
             border-radius: 50px;
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: bold;
             text-transform: uppercase;
             border: none;
             cursor: pointer;
             box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            transition: 0.2s;
         }
 
-        .btn-confirmar:active {
-            transform: translateY(4px);
-        }
-
-        /* Estilos del Logo inferior derecho (Igual a p1) */
         .logo-footer {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            width: 150px;
+            width: 140px;
             height: auto;
             opacity: 0.9;
             z-index: 10;
-            pointer-events: none;
         }
 
         .overlay {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.75);
             backdrop-filter: blur(12px);
             z-index: 100;
@@ -140,51 +130,42 @@
 
         .modal {
             background: white;
-            padding: 50px 40px;
-            border-radius: 35px;
+            padding: 35px;
+            border-radius: 30px;
             width: 85%;
             max-width: 500px;
             text-align: center;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.6);
-            animation: modalIn 0.3s ease-out;
-        }
-
-        @keyframes modalIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
         }
 
         .modal p {
-            font-size: 1.8rem;
-            color: #2c3e50;
-            margin-bottom: 35px;
-            font-weight: 600;
-            line-height: 1.3;
+            font-size: 1.4rem;
+            color: #333;
+            margin-bottom: 25px;
+            line-height: 1.5;
         }
 
         .btn-siguiente {
             display: inline-block;
-            background: #00adef;
+            background: #e67e22;
             color: white;
-            padding: 22px 50px;
-            border-radius: 60px;
+            padding: 18px 35px;
+            border-radius: 50px;
             text-decoration: none;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: bold;
             text-transform: uppercase;
-            box-shadow: 0 5px 15px rgba(0,173,239,0.3);
         }
     </style>
 </head>
 <body>
 
     <div class="main-card">
-        <h2>Pregunta 2</h2>
-        <h1>¿Sabes cuál es tu presión arterial? ¿La has controlado últimamente?</h1>
+        <h2>Pregunta 13</h2>
+        <h1>Elementos de protección personal: ¿Los elementos de protección personal (EPP) son un accesorio opcional?</h1>
 
         <div class="options-grid">
-            <div class="option-btn" onclick="selectOption(this, 'si')">SÍ</div>
-            <div class="option-btn" onclick="selectOption(this, 'no')">NO</div>
+            <div class="option-btn" onclick="selectOption(this)">Verdadero</div>
+            <div class="option-btn" onclick="selectOption(this)">Falso</div>
         </div>
 
         <button class="btn-confirmar" onclick="showFeedback()">Confirmar</button>
@@ -194,22 +175,22 @@
 
     <div id="overlay" class="overlay">
         <div class="modal">
-            <p>Se recomienda controlarla al menos cada 3 a 5 años si tienes entre 18 y 39 años sin factores de riesgo y anualmente a partir de los 40 años o si existen factores de riesgo.</p>
-            <a href="p3.html" class="btn-siguiente">Siguiente Pregunta</a>
+            <p>
+                El EPP no es un accesorio: es protección para la vida. Usarlo siempre marca la diferencia entre el riesgo y el regreso seguro.
+            </p>
+            <a href="s6.html" class="btn-siguiente">Siguiente Pregunta</a>
         </div>
     </div>
 
     <script>
-        let selected = null;
-
-        function selectOption(el, value) {
+        function selectOption(el) {
             document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
             el.classList.add('selected');
-            selected = value;
         }
 
         function showFeedback() {
-            if (selected === null) {
+            if (!document.querySelector('.option-btn.selected')) {
+                alert("Por favor, selecciona una opción.");
                 return;
             }
             document.getElementById('overlay').style.display = 'flex';

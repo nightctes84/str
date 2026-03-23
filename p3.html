@@ -12,6 +12,7 @@ body{
     font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
     background:linear-gradient(-45deg,#00adef,#00567a,#007bb0,#00d2ff);
     background-size:400% 400%;animation:gradientBG 15s ease infinite;
+    overflow: hidden;
 }
 @keyframes gradientBG{
     0%{background-position:0% 50%;}
@@ -25,6 +26,8 @@ body{
     text-align:center;backdrop-filter:blur(20px);
     border:1px solid rgba(255,255,255,0.2);
     box-shadow:0 10px 40px rgba(0,0,0,0.4);
+    position: relative;
+    z-index: 2;
 }
 h2{color:#fff;font-size:1.5rem;margin-bottom:10px;text-transform:uppercase;opacity:.8;}
 h1{color:#fff;font-size:2rem;margin-bottom:40px;line-height:1.3;text-shadow:0 2px 4px rgba(0,0,0,0.2);}
@@ -49,6 +52,18 @@ h1{color:#fff;font-size:2rem;margin-bottom:40px;line-height:1.3;text-shadow:0 2p
     padding:22px;border-radius:50px;
     font-size:1.6rem;font-weight:bold;border:none;
     cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Estilos del Logo inferior derecho */
+.logo-footer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 150px;
+    height: auto;
+    opacity: 0.9;
+    z-index: 10;
+    pointer-events: none;
 }
 
 /* MODAL */
@@ -80,12 +95,14 @@ h1{color:#fff;font-size:2rem;margin-bottom:40px;line-height:1.3;text-shadow:0 2p
     <h1>¿Fumás actualmente? ¿Fumaste en alguna oportunidad?</h1>
 
     <div class="options-grid">
-        <div class="option-btn" onclick="selectOption(this,'si')">SI</div>
-        <div class="option-btn" onclick="selectOption(this,'no')">NO</div>
+        <div class="option-btn" onclick="selectOption(this)">SI</div>
+        <div class="option-btn" onclick="selectOption(this)">NO</div>
     </div>
 
     <button class="btn-confirmar" onclick="showFeedback()">Confirmar</button>
 </div>
+
+<img src="strlogo.png" alt="Logo SRT" class="logo-footer">
 
 <div id="overlay" class="overlay">
     <div class="modal">
@@ -95,13 +112,12 @@ h1{color:#fff;font-size:2rem;margin-bottom:40px;line-height:1.3;text-shadow:0 2p
 </div>
 
 <script>
-let selected=null;
 function selectOption(el){
     document.querySelectorAll('.option-btn').forEach(btn=>btn.classList.remove('selected'));
     el.classList.add('selected');
 }
 function showFeedback(){
-    if(!document.querySelector('.option-btn.selected'))return;
+    if(!document.querySelector('.option-btn.selected')) return;
     document.getElementById("overlay").style.display="flex";
 }
 </script>

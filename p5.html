@@ -12,6 +12,7 @@ body{
     font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
     background:linear-gradient(-45deg,#00adef,#00567a,#007bb0,#00d2ff);
     background-size:400% 400%;animation:gradientBG 15s ease infinite;
+    overflow: hidden;
 }
 @keyframes gradientBG{
     0%{background-position:0% 50%;}
@@ -25,11 +26,12 @@ body{
     text-align:center;backdrop-filter:blur(20px);
     border:1px solid rgba(255,255,255,0.2);
     box-shadow:0 10px 40px rgba(0,0,0,0.4);
+    position: relative;
+    z-index: 2;
 }
 h2{color:#fff;font-size:1.5rem;margin-bottom:10px;text-transform:uppercase;opacity:.8;}
 h1{color:#fff;font-size:2rem;margin-bottom:40px;line-height:1.3;text-shadow:0 2px 4px rgba(0,0,0,0.2);}
 
-/* Botones SI / NO */
 .options-grid{
     display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:40px;
 }
@@ -49,9 +51,21 @@ h1{color:#fff;font-size:2rem;margin-bottom:40px;line-height:1.3;text-shadow:0 2p
     padding:22px;border-radius:50px;
     font-size:1.6rem;font-weight:bold;border:none;
     cursor:pointer;box-shadow:0 8px 20px rgba(0,0,0,0.2);
+    text-transform: uppercase;
 }
 
-/* MODAL */
+/* Estilos del Logo inferior derecho */
+.logo-footer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 150px;
+    height: auto;
+    opacity: 0.9;
+    z-index: 10;
+    pointer-events: none;
+}
+
 .overlay{
     display:none;position:fixed;top:0;left:0;width:100%;height:100%;
     background:rgba(0,0,0,0.75);backdrop-filter:blur(12px);
@@ -87,31 +101,25 @@ h1{color:#fff;font-size:2rem;margin-bottom:40px;line-height:1.3;text-shadow:0 2p
     <button class="btn-confirmar" onclick="showFeedback()">Confirmar</button>
 </div>
 
-<!-- MODAL -->
+<img src="strlogo.png" alt="Logo SRT" class="logo-footer">
+
 <div id="overlay" class="overlay">
     <div class="modal">
-        <p>
-            La OMS recomienda chequeos médicos periódicos para prevenir enfermedades crónicas 
-            y detectar riesgos tempranos.  
-            Incluye control de peso, tensión arterial y análisis de sangre y orina.
-        </p>
-
-<a href="p6.html" class="btn-siguiente">Siguiente Pregunta</a>
+        <p>La OMS recomienda chequeos médicos periódicos para prevenir enfermedades crónicas y detectar riesgos tempranos. Incluye control de peso, tensión arterial y análisis de sangre y orina.</p>
+        <a href="p6.html" class="btn-siguiente">Siguiente Pregunta</a>
     </div>
 </div>
 
 <script>
 function selectOption(el){
-    document.querySelectorAll('.option-btn').forEach(b=>b.classList.remove('selected'));
+    document.querySelectorAll('.option-btn').forEach(btn=>btn.classList.remove('selected'));
     el.classList.add('selected');
 }
-
 function showFeedback(){
     if(!document.querySelector('.option-btn.selected')) return;
-    document.getElementById("overlay").style.display = "flex";
+    document.getElementById("overlay").style.display="flex";
 }
 </script>
 
 </body>
 </html>
-``

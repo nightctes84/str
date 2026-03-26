@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Trivia SRT - Cuestionario Dinámico</title>
+    <style>
+        /* --- ESTILOS BASE --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            transition: background 0.8s ease; /* Transición suave de colores */
+            overflow: hidden;
+        }
+
+        /* --- VARIACIONES DE FONDO SEGÚN CATEGORÍA --- */
+        body.salud {
+            background: linear-gradient(-45deg, #00adef, #00567a, #007bb0, #00d2ff);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        body.seguridad {
+            background: linear-gradient(-45deg, #2c3e50, #4ca1af, #2c3e50, #34495e);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- TARJETA PRINCIPAL --- */
+        .main-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 40px;
+            padding: 35px;
+            width: 90%;
+            max-width: 650px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .contador {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        h2 {
+            color: #ffffff;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            min-height: 80px; /* Evita que el card salte si la pregunta es corta */
+        }
+
+        /* --- BOTONES DE OPCIONES --- */
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .option-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 18px;
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option-btn.selected {
+            background: #ffffff;
+            color: #2c3e50;
+            transform: scale(1.02);
+            border-color: #ffffff;
+        }
+
+        .btn-confirmar {
+            display: block;
+            width: 100%;
+            background: #ffffff;
+            color: #00567a;
+            padding: 20px;
+            border-radius: 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        /* --- OVERLAY / MODAL --- */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(15px);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal {
+            background: white;
+            padding: 35px;
+            border-radius: 30px;
+            width: 85%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        #feedback-resultado {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+        }
+
+        .modal p {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .btn-siguiente {
+            display: inline-block;
+            background: #00adef;
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.4rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: none;
+        }
+
+        .logo-footer {
+            position: fixed;
+            bottom: 20px; right: 20px;
+            width: 120px; opacity: 0.8;
+        }
+    </style>
+</head>
+<body class="salud"> <div class="main-card">
+        <div class="contador" id="contador">Pregunta 1 de 6</div>
+        <h2 id="categoria-label">Salud</h2>
+        <h1 id="pregunta-texto">Cargando...</h1>
+
+        <div class="options-grid" id="options-container">
+            </div>
+
+        <button class="btn-confirmar" onclick="checkAnswer()">Confirmar</button>
+    </div>
+
+    <img src="strlogo.png" alt="Logo SRT" class="logo-footer">
+
+    <div id="overlay" class="overlay">
+        <div class="modal">
+            <div id="feedback-resultado"></div>
+            <p id="feedback-texto"></p>
+            <button class="btn-siguiente" onclick="nextQuestion()" id="btn-next">Siguiente</button>
+        </div>
+    </div>
+
+    <script>
+        // Tus Arrays de preguntas
+        const bancoSalud = [
+            { id: "p1", pregunta: "¿Conocés algún familiar cercano que tenga o haya tenido alguna enfermedad cardiovascular?", opciones: ["SI", "NO"], correcta: "NO", feedback: "Los antecedentes familiares son un factor de riesgo crítico y no modificable. Tener un familiar directo con historial aumenta las probabilidades.", color: "salud" },
+            { id: "p2", pregunta: "¿Sabes cuál es tu presión arterial? ¿La has controlado últimamente?", opciones: ["SÍ", "NO"], correcta: "SÍ", feedback: "Se recomienda controlarla al menos cada 3 a 5 años si eres joven y anualmente a partir de los 40 años.", color: "salud" },
+            { id: "p3", pregunta: "¿Fumás actualmente? ¿Fumaste en alguna oportunidad?", opciones: ["SI", "NO"], correcta: "NO", feedback: "El tabaco es la principal causa prevenible de enfermedad. Causa el 25% de muertes por cáncer.", color: "salud" },
+            { id: "p4", pregunta: "¿Con qué frecuencia realizas actividad física?", opciones: ["1 vez por semana", "2 veces por semana", "No corro ni el colectivo", "Más de 3 veces por semana"], correcta: "Más de 3 veces por semana", feedback: "La actividad física regular reduce riesgos de hipertensión y accidentes cerebrovasculares.", color: "salud" },
+            { id: "p5", pregunta: "¿Realizaste un chequeo médico integral en el último año?", opciones: ["SI", "NO"], correcta: "SI", feedback: "La OMS recomienda chequeos periódicos para detectar riesgos tempranos de peso, tensión y sangre.", color: "salud" },
+            { id: "p6", pregunta: "¿Cuántas horas dormís por día?", opciones: ["Entre 4 y 6 hs", "Entre 7 y 8 hs", "Más de 8 hs", "Me gusta la noche (menos de 4 hs)"], correcta: "Entre 7 y 8 hs", feedback: "Dormir entre 7 y 8 horas es vital para el bienestar físico y mental.", color: "salud" },
+            { id: "p7", pregunta: "¿Considerás que tenés una alimentación saludable?", opciones: ["SI", "NO"], correcta: "SI", feedback: "Prioriza alimentos frescos, legumbres y frutas, limitando sal, azúcar y grasas.", color: "salud" },
+            { id: "p8", pregunta: "¿Cuántos litros de agua consumís por día?", opciones: ["1 litro", "2 litros", "Menos de 1 litro", "Más de 3 litros"], correcta: "2 litros", feedback: "Consumir entre 2 y 3 litros diarios ayuda a regular la temperatura y la función cognitiva.", color: "salud" }
+        ];
+
+        const bancoSeguridad = [
+            { id: "s1", pregunta: "¿El torrero es un Técnico especializado que realiza tareas en torres de telecomunicaciones?", opciones: ["Verdadero", "Falso"], correcta: "Verdadero", feedback: "La altura no perdona. Cumplí procedimientos, usa EPP. ¡Si no es seguro, frená!", color: "seguridad" },
+            { id: "s2", pregunta: "¿Qué riesgo principal existe en altura?", opciones: ["A. Caída de personas.", "B. Caída de personas o de objetos.", "C. Caída de objetos."], correcta: "B. Caída de personas o de objetos.", feedback: "Atención: Una caída causa lesiones fatales. Se usan EPP y se respeta el procedimiento siempre.", color: "seguridad" },
+            { id: "s3", pregunta: "¿Por qué es importante seguir un procedimiento de trabajo en altura?", opciones: ["A. Trabajar más rápido.", "B. Requisito administrativo.", "C. Trabajar con mal clima.", "D. Porque protege y salva vidas."], correcta: "D. Porque protege y salva vidas.", feedback: "En altura no se improvisa. El procedimiento ordena la tarea y garantiza volver seguro a casa.", color: "seguridad" },
+            { id: "s4", pregunta: "¿Quiénes están autorizados a realizar trabajos en estructuras de antenas?", opciones: ["Cualquier trabajador", "Personal con arnés propio", "Personal autorizado, capacitado y con aptitud médica", "Solo personal contratado"], correcta: "Personal autorizado, capacitado y con aptitud médica", feedback: "No alcanza con saber. Solo el personal autorizado, capacitado y con aptitud vigente puede subir.", color: "seguridad" },
+            { id: "s5", pregunta: "¿Los EPP son un accesorio opcional?", opciones: ["Verdadero", "Falso"], correcta: "Falso", feedback: "El EPP no es un accesorio: es protección para la vida. Usarlos marca la diferencia.", color: "seguridad" },
+            { id: "s6", pregunta: "¿Cuál es la función principal del Operador en Tierra?", opciones: ["Tareas administrativas", "Supervisar oficina", "Soporte y emergencias", "Reemplazar al de altura"], correcta: "Soporte y emergencias", feedback: "No se trabaja solo: el Operador en Tierra asiste y actúa ante emergencias.", color: "seguridad" },
+            { id: "s7", pregunta: "¿Qué se debe verificar antes del ascenso?", opciones: ["Solo herramientas", "Solo estado físico", "Clima, estructura, EPP y comunicaciones", "Únicamente altura"], correcta: "Clima, estructura, EPP y comunicaciones", feedback: "Verificar es prevenir. Clima, estructura y comunicaciones son vitales antes de subir.", color: "seguridad" },
+            { id: "s8", pregunta: "¿Qué se debe hacer si se detecta tensión eléctrica en la estructura?", opciones: ["Ascender con precaución", "Usar guantes", "No ascender", "Avisar luego"], correcta: "No ascender", feedback: "Ante tensión eléctrica, la tarea se frena. La vida va primero siempre.", color: "seguridad" }
+        ];
+
+        // LÓGICA DE LA TRIVIA
+        let cuestionarioFinal = [];
+        let indexActual = 0;
+        let seleccion = null;
+
+        function shuffle(array) {
+            return array.sort(() => Math.random() - 0.5);
+        }
+
+        function init() {
+            // Seleccionar 3 azarosas de cada banco
+            const saludSeleccionadas = shuffle([...bancoSalud]).slice(0, 3);
+            const seguridadSeleccionadas = shuffle([...bancoSeguridad]).slice(0, 3);
+            
+            // Mezclarlas todas
+            cuestionarioFinal = shuffle([...saludSeleccionadas, ...seguridadSeleccionadas]);
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const p = cuestionarioFinal[indexActual];
+            seleccion = null;
+            
+            // Cambiar UI según categoría
+            document.body.className = p.color;
+            document.getElementById('categoria-label').innerText = (p.color === 'salud') ? "📍 Salud" : "🚧 Seguridad e Higiene";
+            document.getElementById('contador').innerText = `Pregunta ${indexActual + 1} de 6`;
+            document.getElementById('pregunta-texto').innerText = p.pregunta;
+            
+            // Limpiar y cargar opciones
+            const container = document.getElementById('options-container');
+            container.innerHTML = "";
+            p.opciones.forEach(opt => {
+                const btn = document.createElement('div');
+                btn.className = "option-btn";
+                btn.innerText = opt;
+                btn.onclick = () => selectOption(btn, opt);
+                container.appendChild(btn);
+            });
+        }
+
+        function selectOption(btn, val) {
+            document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            seleccion = val;
+        }
+
+        function checkAnswer() {
+            if (!seleccion) {
+                alert("Por favor, selecciona una respuesta");
+                return;
+            }
+
+            const p = cuestionarioFinal[indexActual];
+            const feedbackResult = document.getElementById('feedback-resultado');
+            
+            if (seleccion === p.correcta) {
+                feedbackResult.innerText = "✅ ¡CORRECTO!";
+                feedbackResult.style.color = "#27ae60";
+            } else {
+                feedbackResult.innerText = "❌ INCORRECTO";
+                feedbackResult.style.color = "#c0392b";
+            }
+
+            document.getElementById('feedback-texto').innerText = p.feedback;
+            
+            // Si es la última pregunta, cambiar texto de botón
+            if (indexActual === 5) {
+                document.getElementById('btn-next').innerText = "Terminar";
+            }
+
+            document.getElementById('overlay').style.display = 'flex';
+        }
+
+        function nextQuestion() {
+            document.getElementById('overlay').style.display = 'none';
+            indexActual++;
+            
+            if (indexActual < 6) {
+                loadQuestion();
+            } else {
+                window.location.href = "resumen.html"; // Aquí envías a tu página final
+            }
+        }
+
+        // Arrancar
+        init();
+    </script>
+</body>
+</html>

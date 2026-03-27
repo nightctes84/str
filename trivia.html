@@ -214,89 +214,18 @@
             { id: "p8", pregunta: "¿Cuántos litros de agua se deberia consumír por día?", opciones: ["1 litro", "2 litros", "Menos de 1 litro", "Más de 3 litros"], correcta: "2 litros", feedback: "Consumir entre 2 y 3 litros diarios ayuda a regular la temperatura y la función cognitiva.", color: "salud" }
         ];
 
-         const bancoSeguridad = [
-    { 
-        id: "s1", 
-        pregunta: "¿Para qué se utilizan los Elementos de Protección Personal?", 
-        opciones: ["A. Para cumplir una norma administrativa", "B. Para reemplazar procedimientos seguros", "C. Para reducir riesgos y proteger la vida del trabajador", "D. Solo por exigencia del cliente"], 
-        correcta: "C. Para reducir riesgos y proteger la vida del trabajador", 
-        feedback: "El EPP no elimina el riesgo, pero reduce o elimina sus consecuencias.", 
-        color: "seguridad" 
-    },
-    { 
-        id: "s2", 
-        pregunta: "¿Cuál es el principal riesgo ante el incumplimiento de las normas de tránsito?", 
-        opciones: ["A. Llegar tarde al trabajo", "B. El desgaste del vehículo", "C. Sufrir un accidente de tránsito", "D. Recibir una multa"], 
-        correcta: "C. Sufrir un accidente de tránsito", 
-        feedback: "La conducción vehicular es parte del trabajo. Respetar normas y conducir de manera defensiva, salva vidas.", 
-        color: "seguridad" 
-    }, 
-    { 
-        id: "s3", 
-        pregunta: "El uso del cinturón de seguridad es obligatorio incluso en trayectos cortos.", 
-        opciones: ["Verdadero", "Falso"], 
-        correcta: "Verdadero", 
-        feedback: "El cinturón reduce significativamente (mas del 50%) en casos de lesiones graves y fatales en accidentes de tránsito.", 
-        color: "seguridad" 
-    }, 
-    { 
-        id: "s4", 
-        pregunta: "El consumo de alcohol afecta los reflejos y la atención.", 
-        opciones: ["Verdadero", "Falso"], 
-        correcta: "Verdadero", 
-        feedback: "Un pequeño consumo puede provocar errores graves, especialmente en tareas críticas.", 
-        color: "seguridad" 
-    }, 
-    { 
-        id: "s5", 
-        pregunta: "¿Qué riesgo puede generar una mala postura de trabajo?", 
-        opciones: ["A. Ninguno", "B. Solo cansancio momentáneo", "C. Lesiones musculares y problemas de salud a largo plazo", "D. Únicamente dolor leve"], 
-        correcta: "C. Lesiones musculares y problemas de salud a largo plazo", 
-        feedback: "Cuidar la postura es cuidar el cuerpo. Adoptar una postura correcta beneficia directamente tu bienestar.", 
-        color: "seguridad" 
-    }, [cite: 19, 20, 21]
-    { 
-        id: "s6", 
-        pregunta: "¿Qué se debe hacer ante una situación de emergencia?", 
-        opciones: ["A. Continuar la tarea", "B. Esperar indicaciones informales", "C. Seguir el procedimiento de emergencia y las vías de evacuación", "D. Retirarse sin avisar"], 
-        correcta: "C. Seguir el procedimiento de emergencia y las vías de evacuación", 
-        feedback: "Estar preparado marca la diferencia. En emergencias, actuar correcto salva vidas.", 
-        color: "seguridad" 
-    }, 
-    { 
-        id: "s7", 
-        pregunta: "¿Cuál es el riesgo más significativo al ingresar a una cámara subterránea?", 
-        opciones: ["A. Esfuerzo físico", "B. Ruido", "C. Falta de oxígeno y la presencia de gases peligrosos", "D. Baja iluminación"], 
-        correcta: "C. Falta de oxígeno y la presencia de gases peligrosos", 
-        feedback: "En cámaras subterráneas, el aire también puede ser un peligro. Verificar antes de ingresar salva vidas.", 
-        color: "seguridad" 
-    }, 
-    { 
-        id: "s8", 
-        pregunta: "¿Qué se debe hacer si el detector de gases indica valores fuera de lo permitido?", 
-        opciones: ["A. Ingresar con precaución", "B. Ventilar solo unos minutos y entrar sin medir nuevamente", "C. No ingresar y reportar la situación", "D. Ingresar rápidamente"], 
-        correcta: "C. No ingresar y reportar la situación", 
-        feedback: "Ante atmósfera peligrosa, la tarea se frena. La vida va primero.", 
-        color: "seguridad" 
-    }, [cite: 30, 31, 32, 33]
-    { 
-        id: "s9", 
-        pregunta: "¿Qué se debe verificar antes del ascenso a estructuras sostén de antenas?", 
-        opciones: ["A. Condiciones de las herramientas", "B. El estado físico del trabajador", "C. Condiciones climáticas, estructura, EPP y comunicaciones", "D. Todas las respuestas son correctas"], 
-        correcta: "D. Todas las respuestas son correctas", 
-        feedback: "Antes de subir, se controla todo. Clima, estructura, EPP y comunicaciones: verificar es prevenir y la prevención cuida la vida.", 
-        color: "seguridad" 
-    },
-    { 
-        id: "s10", 
-        pregunta: "¿Quiénes están autorizados a realizar trabajos en estructuras sostén de antenas?", 
-        opciones: ["Cualquier trabajador con experiencia", "Personal con arnés propio", "Personal autorizado, capacitado y con aptitud médica vigente", "Solo personal contratado"], 
-        correcta: "Personal autorizado, capacitado y con aptitud médica vigente", 
-        feedback: "En trabajos en estructuras sostén de antenas no alcanza con saber. Solo personal autorizado, capacitado y apto puede subir.", 
-        color: "seguridad" 
-    } 
+        const bancoSeguridad = [
+    { id: "s1", pregunta: "¿Para qué se utilizan los EPP?", opciones: ["A. Norma administrativa", "B. Reemplazar procedimientos", "C. Reducir riesgos y proteger la vida", "D. Exigencia del cliente"], correcta: "C. Reducir riesgos y proteger la vida", feedback: "El EPP no elimina el riesgo, pero reduce sus consecuencias.", color: "seguridad" },
+    { id: "s2", pregunta: "¿Cuál es el principal riesgo al incumplir normas de tránsito?", opciones: ["A. Llegar tarde", "B. Desgaste del vehículo", "C. Sufrir un accidente", "D. Multa"], correcta: "C. Sufrir un accidente", feedback: "Respetar normas y conducir de manera defensiva salva vidas.", color: "seguridad" },
+    { id: "s3", pregunta: "El uso del cinturón es obligatorio en trayectos cortos.", opciones: ["Verdadero", "Falso"], correcta: "Verdadero", feedback: "El cinturón reduce más del 50% de lesiones graves.", color: "seguridad" },
+    { id: "s4", pregunta: "El consumo de alcohol afecta los reflejos y la atención.", opciones: ["Verdadero", "Falso"], correcta: "Verdadero", feedback: "Un pequeño consumo puede provocar errores graves.", color: "seguridad" },
+    { id: "s5", pregunta: "¿Qué riesgo genera una mala postura?", opciones: ["A. Ninguno", "B. Cansancio", "C. Lesiones musculares a largo plazo", "D. Dolor leve"], correcta: "C. Lesiones musculares a largo plazo", feedback: "Adoptar una postura correcta beneficia tu bienestar.", color: "seguridad" },
+    { id: "s6", pregunta: "¿Qué hacer ante una emergencia?", opciones: ["A. Continuar", "B. Esperar indicaciones", "C. Seguir procedimiento y evacuación", "D. Retirarse sin avisar"], correcta: "C. Seguir procedimiento y evacuación", feedback: "Estar preparado marca la diferencia.", color: "seguridad" },
+    { id: "s7", pregunta: "¿Riesgo principal en cámaras subterráneas?", opciones: ["A. Esfuerzo físico", "B. Ruido", "C. Falta de oxígeno y gases", "D. Iluminación"], correcta: "C. Falta de oxígeno y gases", feedback: "Verificar el aire antes de ingresar salva vidas.", color: "seguridad" },
+    { id: "s8", pregunta: "¿Qué hacer si el detector de gases indica peligro?", opciones: ["A. Entrar con precaución", "B. Ventilar y entrar sin medir", "C. No ingresar y reportar", "D. Entrar rápido"], correcta: "C. No ingresar y reportar", feedback: "Ante atmósfera peligrosa, la tarea se frena.", color: "seguridad" },
+    { id: "s9", pregunta: "¿Qué verificar antes del ascenso a antenas?", opciones: ["A. Herramientas", "B. Estado físico", "C. Clima, estructura y EPP", "D. Todas son correctas"], correcta: "D. Todas son correctas", feedback: "Antes de subir, se controla todo.", color: "seguridad" },
+    { id: "s10", pregunta: "¿Quiénes pueden trabajar en estructuras de antenas?", opciones: ["Cualquier trabajador", "Personal con arnés", "Personal autorizado y capacitado", "Solo contratados"], correcta: "Personal autorizado y capacitado", feedback: "Solo personal apto y capacitado puede subir.", color: "seguridad" }
 ];
-
 
         // LÓGICA DE LA TRIVIA
         let cuestionarioFinal = [];

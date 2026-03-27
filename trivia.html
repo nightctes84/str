@@ -214,16 +214,89 @@
             { id: "p8", pregunta: "¿Cuántos litros de agua se deberia consumír por día?", opciones: ["1 litro", "2 litros", "Menos de 1 litro", "Más de 3 litros"], correcta: "2 litros", feedback: "Consumir entre 2 y 3 litros diarios ayuda a regular la temperatura y la función cognitiva.", color: "salud" }
         ];
 
-        const bancoSeguridad = [
-            { id: "s1", pregunta: "¿El torrero es un Técnico especializado que realiza tareas en torres de telecomunicaciones?", opciones: ["Verdadero", "Falso"], correcta: "Verdadero", feedback: "La altura no perdona. Cumplí procedimientos, usa EPP. ¡Si no es seguro, frená!", color: "seguridad" },
-            { id: "s2", pregunta: "¿Qué riesgo principal existe en altura?", opciones: ["A. Caída de personas.", "B. Caída de personas o de objetos.", "C. Caída de objetos."], correcta: "B. Caída de personas o de objetos.", feedback: "Atención: Una caída causa lesiones fatales. Se usan EPP y se respeta el procedimiento siempre.", color: "seguridad" },
-            { id: "s3", pregunta: "¿Por qué es importante seguir un procedimiento de trabajo en altura?", opciones: ["A. Trabajar más rápido.", "B. Requisito administrativo.", "C. Trabajar con mal clima.", "D. Porque protege y salva vidas."], correcta: "D. Porque protege y salva vidas.", feedback: "En altura no se improvisa. El procedimiento ordena la tarea y garantiza volver seguro a casa.", color: "seguridad" },
-            { id: "s4", pregunta: "¿Quiénes están autorizados a realizar trabajos en estructuras de antenas?", opciones: ["Cualquier trabajador", "Personal con arnés propio", "Personal autorizado, capacitado y con aptitud médica", "Solo personal contratado"], correcta: "Personal autorizado, capacitado y con aptitud médica", feedback: "No alcanza con saber. Solo el personal autorizado, capacitado y con aptitud vigente puede subir.", color: "seguridad" },
-            { id: "s5", pregunta: "¿Los EPP son un accesorio opcional?", opciones: ["Verdadero", "Falso"], correcta: "Falso", feedback: "El EPP no es un accesorio: es protección para la vida. Usarlos marca la diferencia.", color: "seguridad" },
-            { id: "s6", pregunta: "¿Cuál es la función principal del Operador en Tierra?", opciones: ["Tareas administrativas", "Supervisar oficina", "Soporte y emergencias", "Reemplazar al de altura"], correcta: "Soporte y emergencias", feedback: "No se trabaja solo: el Operador en Tierra asiste y actúa ante emergencias.", color: "seguridad" },
-            { id: "s7", pregunta: "¿Qué se debe verificar antes del ascenso?", opciones: ["Solo herramientas", "Solo estado físico", "Clima, estructura, EPP y comunicaciones", "Únicamente altura"], correcta: "Clima, estructura, EPP y comunicaciones", feedback: "Verificar es prevenir. Clima, estructura y comunicaciones son vitales antes de subir.", color: "seguridad" },
-            { id: "s8", pregunta: "¿Qué se debe hacer si se detecta tensión eléctrica en la estructura?", opciones: ["Ascender con precaución", "Usar guantes", "No ascender", "Avisar luego"], correcta: "No ascender", feedback: "Ante tensión eléctrica, la tarea se frena. La vida va primero siempre.", color: "seguridad" }
-        ];
+         const bancoSeguridad = [
+    { 
+        id: "s1", 
+        pregunta: "¿Para qué se utilizan los Elementos de Protección Personal?", 
+        opciones: ["A. Para cumplir una norma administrativa", "B. Para reemplazar procedimientos seguros", "C. Para reducir riesgos y proteger la vida del trabajador", "D. Solo por exigencia del cliente"], 
+        correcta: "C. Para reducir riesgos y proteger la vida del trabajador", 
+        feedback: "El EPP no elimina el riesgo, pero reduce o elimina sus consecuencias.", 
+        color: "seguridad" 
+    }, [cite: 3, 4, 5]
+    { 
+        id: "s2", 
+        pregunta: "¿Cuál es el principal riesgo ante el incumplimiento de las normas de tránsito?", 
+        opciones: ["A. Llegar tarde al trabajo", "B. El desgaste del vehículo", "C. Sufrir un accidente de tránsito", "D. Recibir una multa"], 
+        correcta: "C. Sufrir un accidente de tránsito", 
+        feedback: "La conducción vehicular es parte del trabajo. Respetar normas y conducir de manera defensiva, salva vidas.", 
+        color: "seguridad" 
+    }, [cite: 7, 8, 9]
+    { 
+        id: "s3", 
+        pregunta: "El uso del cinturón de seguridad es obligatorio incluso en trayectos cortos.", 
+        opciones: ["Verdadero", "Falso"], 
+        correcta: "Verdadero", 
+        feedback: "El cinturón reduce significativamente (mas del 50%) en casos de lesiones graves y fatales en accidentes de tránsito.", 
+        color: "seguridad" 
+    }, [cite: 11, 12, 13]
+    { 
+        id: "s4", 
+        pregunta: "El consumo de alcohol afecta los reflejos y la atención.", 
+        opciones: ["Verdadero", "Falso"], 
+        correcta: "Verdadero", 
+        feedback: "Un pequeño consumo puede provocar errores graves, especialmente en tareas críticas.", 
+        color: "seguridad" 
+    }, [cite: 15, 16, 17]
+    { 
+        id: "s5", 
+        pregunta: "¿Qué riesgo puede generar una mala postura de trabajo?", 
+        opciones: ["A. Ninguno", "B. Solo cansancio momentáneo", "C. Lesiones musculares y problemas de salud a largo plazo", "D. Únicamente dolor leve"], 
+        correcta: "C. Lesiones musculares y problemas de salud a largo plazo", 
+        feedback: "Cuidar la postura es cuidar el cuerpo. Adoptar una postura correcta beneficia directamente tu bienestar.", 
+        color: "seguridad" 
+    }, [cite: 19, 20, 21]
+    { 
+        id: "s6", 
+        pregunta: "¿Qué se debe hacer ante una situación de emergencia?", 
+        opciones: ["A. Continuar la tarea", "B. Esperar indicaciones informales", "C. Seguir el procedimiento de emergencia y las vías de evacuación", "D. Retirarse sin avisar"], 
+        correcta: "C. Seguir el procedimiento de emergencia y las vías de evacuación", 
+        feedback: "Estar preparado marca la diferencia. En emergencias, actuar correcto salva vidas.", 
+        color: "seguridad" 
+    }, [cite: 23, 24, 25]
+    { 
+        id: "s7", 
+        pregunta: "¿Cuál es el riesgo más significativo al ingresar a una cámara subterránea?", 
+        opciones: ["A. Esfuerzo físico", "B. Ruido", "C. Falta de oxígeno y la presencia de gases peligrosos", "D. Baja iluminación"], 
+        correcta: "C. Falta de oxígeno y la presencia de gases peligrosos", 
+        feedback: "En cámaras subterráneas, el aire también puede ser un peligro. Verificar antes de ingresar salva vidas.", 
+        color: "seguridad" 
+    }, [cite: 27, 28, 29]
+    { 
+        id: "s8", 
+        pregunta: "¿Qué se debe hacer si el detector de gases indica valores fuera de lo permitido?", 
+        opciones: ["A. Ingresar con precaución", "B. Ventilar solo unos minutos y entrar sin medir nuevamente", "C. No ingresar y reportar la situación", "D. Ingresar rápidamente"], 
+        correcta: "C. No ingresar y reportar la situación", 
+        feedback: "Ante atmósfera peligrosa, la tarea se frena. La vida va primero.", 
+        color: "seguridad" 
+    }, [cite: 30, 31, 32, 33]
+    { 
+        id: "s9", 
+        pregunta: "¿Qué se debe verificar antes del ascenso a estructuras sostén de antenas?", 
+        opciones: ["A. Condiciones de las herramientas", "B. El estado físico del trabajador", "C. Condiciones climáticas, estructura, EPP y comunicaciones", "D. Todas las respuestas son correctas"], 
+        correcta: "D. Todas las respuestas son correctas", 
+        feedback: "Antes de subir, se controla todo. Clima, estructura, EPP y comunicaciones: verificar es prevenir y la prevención cuida la vida.", 
+        color: "seguridad" 
+    }, [cite: 35, 36, 37, 38, 39, 40]
+    { 
+        id: "s10", 
+        pregunta: "¿Quiénes están autorizados a realizar trabajos en estructuras sostén de antenas?", 
+        opciones: ["Cualquier trabajador con experiencia", "Personal con arnés propio", "Personal autorizado, capacitado y con aptitud médica vigente", "Solo personal contratado"], 
+        correcta: "Personal autorizado, capacitado y con aptitud médica vigente", 
+        feedback: "En trabajos en estructuras sostén de antenas no alcanza con saber. Solo personal autorizado, capacitado y apto puede subir.", 
+        color: "seguridad" 
+    } [cite: 41, 42, 43, 44, 45, 46]
+];
+
 
         // LÓGICA DE LA TRIVIA
         let cuestionarioFinal = [];
